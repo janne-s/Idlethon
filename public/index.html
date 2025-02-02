@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idlethon</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="container">
+    <div id="timer">00:00</div>
+    <div id="leaderboard" class="leaderboard">
+        <!-- The leaderboard bars will be dynamically injected here -->
+    </div>
+    <div id="challenge-level-container" style="display:none;">
+      <button data-level="15">15 min</button>
+      <button data-level="30">30 min</button>
+      <button data-level="60">1 h</button>
+      <button data-level="120">2 h</button>
+      <button data-level="180">3 h</button>
+    </div>
+    <button id="startButton">Start Challenge</button>
+  </div>
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
