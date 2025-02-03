@@ -6,3 +6,4 @@ server/private.key
 server/server.crt
 server/server.csr
 package-lock.json
+db/game.db
