@@ -1,0 +1,8 @@
+.DS_Store
+.nova
+.env
+node_modules/
+server/private.key
+server/server.crt
+server/server.csr
+package-lock.json

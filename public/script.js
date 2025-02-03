@@ -207,14 +207,27 @@ function handleOrientation(event) {
 		console.log("Original orientation saved: ", originalOrientation);
 	}
 
-	// Calculate orientation changes from the original orientation
-	orientationDelta.alpha = Math.abs(alpha - originalOrientation.alpha);
+	// Normalize both angles to 0-360 range first
+	const normalizedAlpha = ((alpha % 360) + 360) % 360;
+	const normalizedOriginalAlpha = ((originalOrientation.alpha % 360) + 360) % 360;
+	
+	// Calculate the shortest distance between the angles
+	let alphaDiff = Math.min(
+		Math.abs(normalizedAlpha - normalizedOriginalAlpha),                    // Direct difference
+		Math.abs(normalizedAlpha - (normalizedOriginalAlpha + 360)),           // Difference when adding 360 to original
+		Math.abs(normalizedAlpha - (normalizedOriginalAlpha - 360)),           // Difference when subtracting 360 from original
+		Math.abs((normalizedAlpha + 360) - normalizedOriginalAlpha),           // Difference when adding 360 to current
+		Math.abs((normalizedAlpha - 360) - normalizedOriginalAlpha)            // Difference when subtracting 360 from current
+	);
+	
+	orientationDelta.alpha = alphaDiff;
+
+	// Regular difference calculation for beta and gamma
 	orientationDelta.beta = Math.abs(beta - originalOrientation.beta);
 	orientationDelta.gamma = Math.abs(gamma - originalOrientation.gamma);
 
 	checkStability(); // Check stability after updating orientation
 }
-
 function handleMotion(event) {
 	const acc = event.acceleration;
 
